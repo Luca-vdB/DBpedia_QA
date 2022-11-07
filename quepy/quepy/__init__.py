@@ -8,14 +8,16 @@
 #          Gonzalo Garcia Berrotaran <ggarcia@machinalis.com>
 
 """
-DBpedia quepy.
+Quepy converts Natural Language Question to database queries.
 """
 
-from basic import *
-from music import *
-from movies import *
-from people import *
-from country import *
-from populated_place import *
-from tvshows import *
-from writers import *
+VERSION = 0.2
+
+import logging
+from quepy.quepyapp import install, QuepyApp
+
+
+def set_loglevel(level=logging.WARNING):
+    logging.basicConfig(level=level)
+    logger = logging.getLogger("quepy")
+    logger.setLevel(level)
