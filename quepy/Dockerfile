@@ -1,22 +1,27 @@
-FROM python:3.3
+FROM python:3.6
 
-# expose
 EXPOSE 8000
-# set working directory
+
 WORKDIR /app
 
 COPY ./requirements.txt /app/requirements.txt
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY . /app
+RUN git clone https://github.com/DarFig/quepy
 
-RUN rm -r /usr/local/lib/python3.3/site-packages/quepy/
+WORKDIR /app/quepy
 
-COPY ./quepy /usr/local/lib/python3.3/site-packages/quepy/
+RUN git checkout python3.6
 
-#RUN cat /usr/local/lib/python3.2/site-packages/quepy/quepyapp.py
+RUN rm -r quepy
 
-RUN quepy --version
+RUN mv quepy_python36 quepy
 
-RUN python app/dbpedia/main.py "Who is Tom Cruise?"
+RUN python setup.py install
+
+WORKDIR /app
+
+COPY ./app /app
+
+RUN python dbpedia/main.py "Who is Tom Cruise?"
