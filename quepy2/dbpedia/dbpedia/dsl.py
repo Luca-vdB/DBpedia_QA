@@ -135,7 +135,7 @@ class ReleaseDateOf(FixedRelation):
 
 
 class StarsIn(FixedRelation):
-    relation = "dbpprop:starring"
+    relation = "dbo:starring"
     reverse = True
 
 
@@ -150,7 +150,7 @@ class ShowNameOf(FixedRelation):
 
 
 class HasActor(FixedRelation):
-    relation = "dbpprop:starring"
+    relation = "dbo:starring"
 
 
 class CreatorOf(FixedRelation):
