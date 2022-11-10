@@ -136,7 +136,7 @@ def wikipedia2dbpedia(wikipedia_url):
     else:
         return results["results"]["bindings"][0]["url"]["value"]
 
-
+"""
 if __name__ == "__main__":
     default_questions = [
         "What is a car?",
@@ -145,8 +145,8 @@ if __name__ == "__main__":
         "Who is Mirtha Legrand?",
         # "List Microsoft software",
         "Name Fiat cars",
-        "time in argentina",
-        "what time is it in Chile?",
+        #"time in argentina",
+        #"what time is it in Chile?",
         "List movies directed by Martin Scorsese",
         "How long is Pulp Fiction",
         "which movies did Mel Gibson starred?",
@@ -179,6 +179,50 @@ if __name__ == "__main__":
     }
 
     for question in questions:
+        print(question)
+        print("-" * len(question))
+
+        target, query, metadata = dbpedia.get_query(question)
+
+        if isinstance(metadata, tuple):
+            query_type = metadata[0]
+            metadata = metadata[1]
+        else:
+            query_type = metadata
+            metadata = None
+
+        if query is None:
+            print("Query not generated :(\n")
+            continue
+
+        print(query)
+
+        if target.startswith("?"):
+            target = target[1:]
+        if query:
+            sparql.setQuery(query)
+            sparql.setReturnFormat(JSON)
+            results = sparql.query().convert()
+
+            if not results["results"]["bindings"]:
+                print("No answer found :(")
+                continue
+
+        print_handlers[query_type](results, target, metadata)
+        print()
+"""
+
+if __name__ == "__main__":
+    while True:
+        question = raw_input("Ask a question: ")
+        print_handlers = {
+        "define": print_define,
+        "enum": print_enum,
+        "time": print_time,
+        "literal": print_literal,
+        "age": print_age,
+        }
+
         print(question)
         print("-" * len(question))
 
