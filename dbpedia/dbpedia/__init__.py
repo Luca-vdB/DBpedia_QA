@@ -6,4 +6,4 @@ Init for dbpedia quepy.
 
 #from basic import *
 
-from king import *
+from dbpedia.who_is_the_of import *

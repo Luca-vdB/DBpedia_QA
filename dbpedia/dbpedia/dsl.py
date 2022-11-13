@@ -20,6 +20,9 @@ HasKeyword.language = "en"
 class IsCountry(FixedType):
     fixedtype = "dbo:Country"
 
+class IsCompany(FixedType):
+    fixedtype = "dbo:Company"
+
 
 class LabelOf(FixedRelation):
     relation = "rdfs:label"
@@ -30,6 +33,7 @@ class PresidentOf(FixedRelation):
     relation = "dbp:leaderTitle"
     reverse = True
 
+
 class MonarchOf(FixedRelation):
     relation = "dbp:monarch"
     reverse = True
@@ -37,4 +41,8 @@ class MonarchOf(FixedRelation):
 
 class IncumbentOf(FixedRelation):
     relation = "dbp:incumbent"
+    reverse = True
+
+class KeyPeopleOf(FixedRelation):
+    relation = "dbp:keyPeople"
     reverse = True
