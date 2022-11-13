@@ -70,7 +70,8 @@ class InWhichStateIsY(QuestionTemplate):
 
 
 class WhatIsTheTimezoneOf(QuestionTemplate):
-    regex = Lemma("what") + Lemma("be") + Question(Pos("DT")) + Lemma("time zone") + Lemma("of") + Place() + Question(Pos("."))
+    regex = Lemma("what") + Lemma("be") + Question(Pos("DT")) + \
+        Plus(Lemma("timezone") | Lemma("time") + Lemma("zone")) + Lemma("of") + Place() + Question(Pos("."))
 
     def interpret(self, match):
         location = match.place

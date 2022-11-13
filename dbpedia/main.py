@@ -16,5 +16,5 @@ print(query)
 target, query, metadata = dbpedia.get_query("In which state is Frankfurt?")
 print(query)
 """
-target, query, metadata = dbpedia.get_query("What is the time zone of Salt Lake City?")
+target, query, metadata = dbpedia.get_query("Which artists were born on the same date as Rachel Stevens?")
 print(query)

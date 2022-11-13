@@ -55,3 +55,7 @@ class TimezoneOf(FixedRelation):
 class BirthDayOf(FixedRelation):
     relation = "dbo:birthDate"
     reverse = True
+
+class BornOn(FixedRelation):
+    relation = "dbo:birthDate"
+    
