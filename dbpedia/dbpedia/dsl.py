@@ -58,4 +58,8 @@ class BirthDayOf(FixedRelation):
 
 class BornOn(FixedRelation):
     relation = "dbo:birthDate"
+
+class IsArtist(FixedType):
+    fixedtype = "dbo:Artist"
+
     

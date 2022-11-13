@@ -86,21 +86,24 @@ class Person(Particle):
 
     def interpret(self, match):
         name = match.words.tokens.title()
-        return IsPerson + HasKeyword(name)
+        return HasKeyword(name)
 
 
-"""
+
 class WhichArtistsWereBornOnTheSameDateAs(QuestionTemplate):
-    regex = Lemma("which") + Lemma("artists") + Lemma("be") + Lemma("born") + Lemma("on") + \
-        + Question(Pos("DT")) + Lemma ("same") + Lemma("date") + Lemma("as") + Person()
+
+    regex = regex = Lemma("which") + Lemma("artist") + Lemma("be") + Lemma("bear") + \
+         Lemma("on") + Question(Pos("DT")) + Lemma ("same") + Lemma("date") +  \
+         Lemma("as") + Person() + Question(Pos(".")) 
 
     def interpret(self, match):
-        artist = match.person
-        birthdate = BirthDayOf(artist)
-        born_on = BornOn(birthdate)
-        return born_on
+        person = match.person
+        birthdate = BirthDayOf(person)
+        artists = BornOn(birthdate) + IsArtist()
+        label = LabelOf(artists)
 
-"""
+        return label, "enum"
+
 
 
 
