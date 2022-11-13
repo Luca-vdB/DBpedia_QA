@@ -4,4 +4,6 @@
 Init for dbpedia quepy.
 """
 
-from basic import *
+#from basic import *
+
+from king import *
