@@ -30,6 +30,10 @@ class PresidentOf(FixedRelation):
     relation = "dbp:leaderTitle"
     reverse = True
 
+class MonarchOf(FixedRelation):
+    relation = "dbp:monarch"
+    reverse = True
+
 
 class IncumbentOf(FixedRelation):
     relation = "dbp:incumbent"

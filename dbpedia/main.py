@@ -10,6 +10,8 @@ import quepy
 dbpedia = quepy.install("dbpedia")
 
 
-target, query, metadata = dbpedia.get_query("Who is president of Argentina?")
+target, query, metadata = dbpedia.get_query("Who is president of France?")
+print(query)
+target, query, metadata = dbpedia.get_query("Who is king in England?")
 print(query)
 

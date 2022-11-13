@@ -13,9 +13,8 @@ Country related regex
 
 from refo import Plus, Question
 from quepy.dsl import HasKeyword
-from quepy.parsing import Lemma, Pos, QuestionTemplate, Token, Particle
-from .dsl import IsCountry, IncumbentOf, \
-    LabelOf, PresidentOf
+from quepy.parsing import Lemma, Pos, QuestionTemplate, Particle
+from .dsl import *
 
 
 class Body(Particle):
@@ -34,9 +33,20 @@ class Role(Particle):
         return 
 
 
-class WhoIsTheXOfY(QuestionTemplate):
+class WhoIsTheMonarchOf(QuestionTemplate):
 
-    regex = Lemma("who") + Lemma("be") + Role() + Pos("IN") + Body() + Question(Pos("."))
+    regex = Lemma("who") + Lemma("be") + (Lemma("king") | Lemma("queen")) + Pos("IN") + Body() + Question(Pos("."))
+
+    def interpret(self, match):
+        president = MonarchOf(match.body)
+        #incumbent = IncumbentOf(president)
+        label = LabelOf(president)
+
+        return label, "enum"
+
+class WhoIsThePresidentOf(QuestionTemplate):
+
+    regex = Lemma("who") + Lemma("be") + Lemma("president") + Pos("IN") + Body() + Question(Pos("."))
 
     def interpret(self, match):
         president = PresidentOf(match.body)
