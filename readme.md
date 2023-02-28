@@ -1,4 +1,5 @@
-How to make quepy work with python2.7 in 2022 
+How to make quepy work with python2.7 in 2022:
+
 
 conda create -y -n kbs27 python=2.7 spyder=3.3.6
 
